@@ -1,0 +1,13 @@
+.button_hover:hover{
+    background-color: green;
+    color: yellow;
+}
+a:visited{
+    color:red;
+}
+a:link{
+    color:yellowgreen;
+}
+button:active{
+    background-color: aqua;
+}

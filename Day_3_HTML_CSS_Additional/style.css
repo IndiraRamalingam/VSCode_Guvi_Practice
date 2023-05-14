@@ -1,0 +1,44 @@
+.grid-container{
+background-color:rgb(242, 240, 237);
+display:grid;
+/* grid-template-columns: auto auto; */
+/* grid-template-columns: 100px 150px auto; */
+/* grid-template-columns: 1fr 2fr 3fr; */
+/* grid-template-rows:auto auto; */
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: 100px 100px 100px 100px;
+}
+.grid{
+    border: 1px solid black;
+    padding:30px;
+    text-align: center;
+
+}
+.grid-1{
+    background-color: rgb(226, 230, 222);
+    grid-column: 1 / span 2;
+}
+.grid-2{
+    background-color: aquamarine;
+}
+.grid-3{
+    background-color: rgb(206, 182, 196);
+    grid-column:4;
+    grid-row:1/span 3
+}
+.grid-4{
+    background-color: burlywood;
+}
+.grid-5{
+    background-color: blanchedalmond;
+    grid-column: 2/span 2;
+}
+.grid-6{
+    background-color: rgb(155, 176, 176);
+    grid-column: 1/span 4;
+}
+.grid-7{
+    background-color: rgb(202, 216, 231);
+    grid-row: 3;
+    grid-column: 1 / span 3;
+}

@@ -1,0 +1,50 @@
+.nav-sticky{
+    position: sticky;
+    background-color: aquamarine;
+    top:0;
+    padding: 20px;
+}
+.nav-sticky li{
+    display: inline-block;
+}
+.nav-sticky a{
+    text-decoration: none;
+    padding: 20px;
+}
+.nav-sticky ul{
+    top:0;
+    padding:0;
+    list-style: none;
+    margin:0;
+}
+.fa,.fa-bars{
+    visibility: hidden;
+}
+.content p{
+    font-size: 18px;
+    font-family: cursive;
+}
+
+@media(max-width:580px)
+{
+    .fa,.fa-bars{
+        visibility:visible;
+    }
+    .nav-sticky li{
+        display: block;
+       }
+    .nav-sticky a{
+        padding-left:0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
