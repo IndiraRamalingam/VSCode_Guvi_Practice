@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="firstDiv">
+
+    </div>
+    <div id="secondDiv">
+        
+    </div>
+    <div id="thirdDiv">
+        <p>Example of Query Selector</p>
+    </div>
+    <script>
+        //create paragraph element
+        let paragraph=document.createElement('p');
+    
+        //set the content of paragraph element
+        paragraph.textContent="This is paragraph"
+    
+        //append the paragraph element to the body
+       // document.body.appendChild(paragraph)
+        
+        let heading=document.createElement('h1');
+        heading.textContent="Dynamic Heading"
+        //document.body.appendChild(heading)
+        // document.body.append(heading,paragraph)
+        document.getElementById('firstDiv').append(paragraph,heading)
+
+        //Create anchor element
+        // let link=document.createElement('a');
+        // link.href='https://www.google.com'
+        // link.textContent='Visit Google.com'
+        // document.getElementById('secondDiv').appendChild(link);
+
+        //Inner HTML
+//         let heading1=`<h1>List Of Items</h1>`
+//         document.getElementById('thirdDiv').innerHTML=heading1;
+// 
+//         let listOfItems=['Tea','Coffee','Lemon Tea']
+//         let list=`<ul>`;
+//             listOfItems.map(function(item)
+//             {
+//                 list=list+`<li>`+item+`</li>`
+//             })
+//         list=list+`</ul>`
+//         document.getElementById('thirdDiv').innerHTML=list;
+
+    <!--Query Selector and querySelectorAll-->
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
