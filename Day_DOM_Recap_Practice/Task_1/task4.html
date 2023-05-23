@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h4>Task_4</h4>
+        <textarea rows="5" cols="50" oninput="characterCount()" id="textarea"></textarea>
+        <p id="chars">You inserted characters: </p>
+    </div>
+    <script>
+        function characterCount(){
+            let textarea=document.getElementById('textarea')
+            //console.log(textarea.value)
+            let chars=document.getElementById('chars')
+            chars.textContent=`You inserted character: ${textarea.value.length}`
+            //console.log(textarea.value.length)
+        }
+    </script>
+</body>
+</html>
