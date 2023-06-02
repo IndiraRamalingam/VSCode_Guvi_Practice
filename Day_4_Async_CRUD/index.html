@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD with HTML, CSS, Javascript</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <h2>Create Post</h2>
+    <form id="create-post-form">
+        <label for=""title>Title</label>
+        <input type="text" required id="title"><br><br>
+        <label for="body">Body</label>
+        <textarea id="body" required></textarea><br><br>
+        <button type="submit">Create Post</button>
+    </form>
+    <h2>Edit Post</h2>
+    <form style="display:none;" id="edit-post-form">
+        <input type="hidden" id="edit-post-id">
+        <label for="edit-title">Title</label>
+        <input type="text" id="edit-title" required><br><br>
+        <label for="edit-body">Body</label>
+        <textarea id="edit-body" required></textarea>
+        <button type="submit">Update</button>
+        <button onclick="cancelEdit()">Cancel</button>
+    </form>
+    <table id="posts-table">
+        <thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th></th>
+        </thead>
+        <tbody></tbody>
+        </table>
+        
+    <script src="./script.js">
+    </script>
+</body>
+</html>
