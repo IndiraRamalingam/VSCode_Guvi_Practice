@@ -16,7 +16,11 @@ footer.setAttribute('class','')
 footer.innerHTML=`<div class="container footer_color">
 <a href="https://makeup-api.herokuapp.com/" target="_blank" class="link"><span style="color:#c33199"><em>www.makeup-api.herokuapp.com</em></a>.</span>
 </div>`
-
+header.innerHTML=`<div class="header-text-box">
+            <h1 class="display-4 heading">
+              <span class="heading-sub"></span><span class="heading-main">Makeup Products API</span>  
+            </h1>
+          </div>`
 //creation of container
 let div=document.createElement('div')
 div.setAttribute('class','container')
@@ -61,7 +65,7 @@ function getData1(data)
         let div_col1=document.createElement('div')
         div_col1.setAttribute('class','col-6')
         let btn_product_div=document.createElement('div')
-        btn_product_div.setAttribute('class','btn-group')
+        btn_product_div.setAttribute('class','btn-group ')
 
         let btn_product=document.createElement('select')
         btn_product.setAttribute('type','button')
@@ -71,13 +75,15 @@ function getData1(data)
         btn_product.innerHTML=`<option value="">-- Please choose an option --</option>`
         //insert products into dropdown
 
-        var Products = new_Product;
-        console.log(Products)
+        var Products = new_Product.sort();
+        console.log("Sort"+Products.sort())
  
         for(var i=0;i<Products.length;i++)
         {     
         var opt = document.createElement("option"); 
-        opt.text = Products[i];
+        let Caps=Products[i].charAt(0).toUpperCase()+Products[i].slice(1,Products[i].length)
+        opt.text = Caps;
+        console.log("Caps   "+Caps)
         opt.value = Products[i];
         btn_product.options.add(opt);      
         }
@@ -104,14 +110,18 @@ function getData1(data)
         btn_brand.innerHTML=`<option value="">-- Please choose an option --</option>`
 
         //insert products into dropdown
-        var Brands = new_Brand
+        var Brands = new_Brand.sort()
         console.log(Brands)
         for(var i=0;i<Brands.length;i++)
-        {     
+        {
+        if(Brands[i]!=null)
+        {    
         var opt = document.createElement("option"); 
-        opt.text = Brands[i];
+        let Caps_Brand=Brands[i].charAt(0).toUpperCase()+Brands[i].slice(1,Brands[i].length)
+        opt.text = Caps_Brand;
         opt.value = Brands[i];
-        btn_brand.options.add(opt);      
+        btn_brand.options.add(opt);    
+        }  
         }
         btn_brand_div.append(btn_brand)
         div_col2.append(btn_brand_div)
@@ -136,7 +146,8 @@ async function getProducts(product_value,brand_value)
         let response=await fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?brand=${bran}&product_type=${prod}`)
         //let response=await fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${product_value}`)
         let data=await response.json();
-        
+        div_row_error.innerHTML=''
+        div_row_card.innerHTML=''
         if(data!="")
         {
         console.log("DDD"+data+"TH")
@@ -149,8 +160,8 @@ async function getProducts(product_value,brand_value)
             let price_display=e.price;
             let description_display=e.description;
             let link_display=e.product_link;
-            let color_display=e.product_colors;
-            console.log("Value  "+image_display+name_display)
+            let color_display=e.product_colors[0].hex_value;
+            console.log("Value  "+color_display)
 
             //create cards and append it to column        
             let div_col_card=document.createElement('div')
@@ -158,10 +169,11 @@ async function getProducts(product_value,brand_value)
             let card_group=document.createElement('div')
             card_group.setAttribute('class','card-group')
         // if(image_display!=""||name_display!="")
-            function create_cards(image_display,name_display,product_display,brand_display,price_display,description_display)
+            function create_cards(image_display,name_display,product_display,brand_display,price_display,description_display,link_display,color_display)
             {
                 console.log("Create card")
-                console.log("Check   "+image_display+"   "+name_display+"  "+product_display+"  "+brand_display+"  "+price_display)
+                console.log("Check   "+image_display+"   "+name_display+"  "+product_display+"  "+brand_display+"  "+price_display+" "+link_display)
+               // console.log("Colors---> "+color_display)
                 let card_div=document.createElement('div')
                 card_div.setAttribute('class','card h-100')
                 card_div.id="div_card"
@@ -187,15 +199,19 @@ async function getProducts(product_value,brand_value)
                 p1.setAttribute('class','card-text text-center')
                 p2.setAttribute('class','card-text text-center')
                 p3.setAttribute('class','card-text text-center')
-                p1.innerHTML=product_display            
-                p2.innerHTML=brand_display
+                p1.innerHTML="Product: "+product_display.charAt(0).toUpperCase()+product_display.slice(1,product_display.length)            
+                p2.innerHTML="Brand: "+brand_display.charAt(0).toUpperCase()+brand_display.slice(1,brand_display.length)            
                 p3.innerHTML="Price: $"+price_display    
-                card_body.append(p1,p2,p3)                
+                card_body.append(p1,p2,p3) 
+                //Create link
+                let card_link=document.createElement('a')
+                card_link.setAttribute('class','Card-link')
+                card_link.innerHTML=`<a href="${link_display}" target="_blank" class="link"><span style="color:#c33199"><em>Know More</em></a></span>`               
                 //create button inside card
                 let card_btn=document.createElement('button')
                 //card_btn.id='descrip'
                 card_btn.setAttribute('type','button')
-                card_btn.setAttribute('class','btn btn-primary')
+                card_btn.setAttribute('class','btn color-btn')
                 card_btn.innerHTML="Description"
                 card_btn.onclick=fetchDescription
                 card_btn.setAttribute('role','button')
@@ -209,7 +225,7 @@ async function getProducts(product_value,brand_value)
                         console.log(description_display)
                         //Popover function
                     $('[data-toggle="popover"]').popover({
-                        placement: 'top',
+                        placement: 'bottom',
                         trigger: 'focus',
                         html: true,
                         content:description_display
@@ -220,11 +236,28 @@ async function getProducts(product_value,brand_value)
                     trigger: 'focus'
                 })
                 }
+                //Colors to show
+                let color_div=document.createElement('div')
+                color_div.setAttribute('class','colors-info mb-2')
+                let title=document.createElement('p')
+                title.setAttribute('class','color-title')
+                title.innerHTML=`Color's: `
+                let colors=[];
+                colors.push(color_display);
+                console.log("fdsfsdfsdfs   "+colors)
+                let clr=colors.map(function(i)
+                {
+                    console.log("CCC  "+i)
+                    color_div.innerHTML=`<span class="card-text color-box" style="background: ${i};"></span>`
+                })
+                color_div.append(clr,title)
+                
+            
             //Append to card_div
-            card_div.append(card_img,card_header,card_body,card_btn)
+            card_div.append(card_img,card_header,card_body,color_div,card_link,card_btn)
             return card_div;
             }
-            let card=create_cards(image_display,name_display,product_display,brand_display,price_display,description_display)
+            let card=create_cards(image_display,name_display,product_display,brand_display,price_display,description_display,link_display,color_display)
             card_group.append(card)
             div_col_card.append(card_group)
             div_row_card.append(div_col_card)
