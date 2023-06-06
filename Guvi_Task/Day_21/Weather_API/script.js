@@ -5,7 +5,7 @@ let weatherInfo=document.querySelector('.weatherinfo');
 let searchButton=document.querySelector('.searchbutton');
 let icon=document.querySelector('.icon')
 
-
+//function when user Pressed button or enter
 function handleSubmit(event)
 {
     event.preventDefault();
@@ -15,6 +15,7 @@ function handleSubmit(event)
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${c_code}&appid=${api}`)
     .then(res=>{
         //console.log('res.status: ', res.status);
+        //To check whether the requested city is exists or not
     if (res.status==404)
     {
         //console.log("No")
@@ -27,6 +28,7 @@ function handleSubmit(event)
         error_div.append(error_col)
         weatherInfo.append(error_div)
     }
+    //If city exists
     else
     {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${c_code}&appid=${api}`)
@@ -34,6 +36,7 @@ function handleSubmit(event)
     .then(data=>
         {
            // console.log(data)
+            //Fetching the neccessary data to show in page
             weatherInfo.innerHTML=''
             let div=document.createElement('div')
             div.setAttribute('class','card text-center')
@@ -70,6 +73,9 @@ function handleSubmit(event)
             
             weatherInfo.append(div)
             
+        })
+        .catch((error)=>{
+            console.log(error);
         })
     }
 })

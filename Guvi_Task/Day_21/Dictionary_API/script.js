@@ -76,6 +76,9 @@ function handleSubmit(event)
         wordInfo.append(list)
 
         })
+        .catch((error)=>{
+            console.log(error)
+        })
 }
 })
 }
