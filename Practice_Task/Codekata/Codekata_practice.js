@@ -1,30 +1,30 @@
-let n=23;
-let str="ABCdEFGHIJKLMNOPQRSTUVWXYz".split("")
-//XYZaBCDEFGHIJKLMNOPQRSTUVw
-let arr=[];
-let new_arr=[];
-for(let i=23;i<str.length;i++)
-{
-      arr.push(str[i])   
-}
-for(let i=0;i<n;i++)
-{
-      arr.push(str[i])   
-}
-
-for(let j=0;j<str.length;j++)
-{
-  if(str[j]===str[j].toUpperCase())
-  {
-    let a=(str.indexOf(str[j]))
-    new_arr.push(arr.join("").charAt(a).toUpperCase())
-  }
-  else{
-    let b=(str.indexOf(str[j]))
-    new_arr.push(arr.join("").charAt(b).toLowerCase())
-  }
-}
-console.log(new_arr.join(""))
+// let n=23;
+// let str="ABCdEFGHIJKLMNOPQRSTUVWXYz".split("")
+// //XYZaBCDEFGHIJKLMNOPQRSTUVw
+// let arr=[];
+// let new_arr=[];
+// for(let i=23;i<str.length;i++)
+// {
+//       arr.push(str[i])   
+// }
+// for(let i=0;i<n;i++)
+// {
+//       arr.push(str[i])   
+// }
+// 
+// for(let j=0;j<str.length;j++)
+// {
+//   if(str[j]===str[j].toUpperCase())
+//   {
+//     let a=(str.indexOf(str[j]))
+//     new_arr.push(arr.join("").charAt(a).toUpperCase())
+//   }
+//   else{
+//     let b=(str.indexOf(str[j]))
+//     new_arr.push(arr.join("").charAt(b).toLowerCase())
+//   }
+// }
+// console.log(new_arr.join(""))
 
 
 
@@ -90,15 +90,17 @@ console.log(new_arr.join(""))
 
 
 //To remove dulicates
-//let num="1 1 1 2 2 2 3 8 9 7".split(" ")
+ let num="1 1 1 2 2 2 3 8 9 7".split(" ")
+// console.log(num)
 // let new_arr=[...new Set(num)]
 // console.log(new_arr)
 
-// let uniq=num.filter((c,i)=>
-// {
-//   return num.indexOf(c)===i;
-// })
-// console.log(uniq)
+let uniq=num.filter((c,i)=>
+{
+  console.log(num.indexOf(c)+"   "+i)
+  return num.indexOf(c)===i;
+})
+console.log(uniq)
 
 
 
